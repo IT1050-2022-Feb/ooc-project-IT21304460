@@ -1,0 +1,124 @@
+//IT21313134 Ranatunga B.M 
+
+//Package.h
+
+#include"Payment.h"
+
+#define SIZE13
+
+class Package
+{
+private:
+	int PackID;
+	char PackName[10];
+	char Packtype[20];
+
+	Payment* set[SIZE13];
+
+public:
+	Package();
+	Package(int pPackid, const char pPackName[], const char pPacktype[]);
+	void addPackage();
+	void UpdatePackages();
+	void displayPackages();
+	void removePackages();
+	~Package();
+};
+
+//Feedback.h
+
+#include"RegisteredUser.h"
+class Feedback
+{
+protected:
+	int feedbackID;
+	char feedbackDescription[30];
+	char feedbackreplay[30];
+public:
+	Feedback();
+	Feedback(int FID, const char Fdescription[], const char Freply[]);
+	void setfeedback(RegisteredUser*R);
+	void displayfeedback();
+	~Feedback();
+};
+
+//Package.cpp
+
+#include "Package.h"
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+Package::Package()
+{
+	PackID = 0;
+	strcpy(PackName, "");
+	strcpy(Packtype, "");
+}
+Package::Package(int pPackid, const char pPackName[], const char pPacktype[])
+{
+	PackID = pPackid;
+	strcpy(PackName, pPackName);
+	strcpy(Packtype, pPacktype);
+}
+void Package::addPackage()
+{
+
+}
+void Package::UpdatePackages()
+{
+
+}
+void Package::displayPackages()
+{
+	cout << "Package ID : " << PackID << endl;
+	cout << "Package Name : " << PackName << endl;
+	cout << "Package Type : " << Packtype << endl;
+}
+void Package::removePackages()
+{
+
+}
+Package::~Package()
+{
+	//Destructor 
+}
+
+
+//Feedback.cpp
+
+#include "Feedback.h"
+
+#include<cstring>
+#include<iostream>
+
+using namespace std;
+
+Feedback::Feedback()
+{
+	feedbackID = 0;
+	strcpy(feedbackDescription, "");
+	strcpy(feedbackreplay, "");		
+}
+Feedback::Feedback(int FID, const char Fdescription[], const char Freply[])
+{
+	feedbackID = FID;
+	strcpy(feedbackDescription,Fdescription);
+	strcpy(feedbackreplay,Freply);
+}
+void Feedback::setfeedback(RegisteredUser*R)
+{
+
+}
+void Feedback::displayfeedback()
+{
+	cout << "Feedback ID : " << feedbackID << endl;
+	cout << "Feedback Message : " << feedbackDescription << endl;
+	cout << "Feedback Reply : " << feedbackreplay << endl;
+}
+Feedback::~Feedback()
+{
+	//Destructor "Like delete feedback"
+}
+
