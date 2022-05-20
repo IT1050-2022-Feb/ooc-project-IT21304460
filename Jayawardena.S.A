@@ -1,0 +1,137 @@
+//IT21288180_Jayawardena.S.A
+
+//Profile.h
+
+#include"RegisteredUser.h"
+
+class Profile
+{
+private:
+	int PUserID;
+	char PUserName[20];
+	int PUserAge;
+	char PUserEmail[20];
+	char PUserAddress[30];
+
+public:
+	Profile();
+	Profile(const char pUname[], const char pUPassword[], int pUID, int pUAge, const char pUEmail[], const char pUAddress[]);
+	void generateGameplayReports();
+	void adddetails();
+	void displayDetails();
+	void removedetails();
+	~Profile();
+};
+
+//Payment.h
+
+#include"Package.h"
+#define SIZE7
+class Payment
+{
+private:
+	int PayID;
+	char PayType[20];
+	double PayAmount;
+	
+	Package* R1[SIZE7];
+
+public:
+	Payment();
+	Payment(int pPID, const char pPayType[], double pPayAmount);
+	void checkPayment();
+	void confirmPayment();
+	void displayPaymentDetails();
+	~Payment();
+};
+
+
+//Profile.cpp
+
+#include "Profile.h"
+#include<cstring>
+#include<iostream>
+
+using namespace std;
+
+Profile::Profile()
+{
+	PUserID = 0;
+	strcpy(PUserName, "");
+	PUserAge = 0;
+	strcpy(PUserEmail, " ");
+	strcpy(PUserAddress, "");
+}
+Profile::Profile(const char pUname[], const char pUPassword[], int pUID,int pUAge, const char pUEmail[], const char pUAddress[])
+{
+	PUserID =pUID;
+	strcpy(PUserName, pUname);
+	PUserAge = pUAge;
+	strcpy(PUserEmail, pUEmail);
+	strcpy(PUserAddress, pUAddress);
+}
+void Profile::generateGameplayReports()
+{
+
+}
+void Profile::adddetails()
+{
+
+}
+void Profile::displayDetails()
+{
+	cout << "User ID " << PUserID << endl;
+	cout << "User Name" << PUserName << endl;
+	cout << "User Age" << PUserAge << endl;
+	cout << "User Email" << PUserEmail << endl;
+	cout << "User Address" << PUserAddress << endl;
+}
+void Profile::removedetails()
+{
+
+}
+Profile::~Profile()
+{
+	//Destructor
+}
+
+
+//Payment.cpp
+
+#include "Payment.h"
+
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+Payment::Payment()
+{
+	PayID = 0;
+	strcpy(PayType, "");
+	PayAmount = 0.00;
+}
+Payment::Payment(int pPID, const char pPayType[], double pPayAmount)
+{
+	PayID = pPID;
+	strcpy(PayType, pPayType);
+	PayAmount = pPayAmount;
+}
+void Payment::checkPayment()
+{
+
+}
+void Payment::confirmPayment()
+{
+
+}
+void Payment::displayPaymentDetails()
+{
+	cout << "Payment ID :" << PayID << endl;
+	cout << "Payment Type :" << PayType << endl;
+	cout << "Payment Amount : " << PayAmount << endl;
+}
+Payment::~Payment()
+{
+	//Destructor
+}
