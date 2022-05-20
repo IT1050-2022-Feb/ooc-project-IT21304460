@@ -1,0 +1,234 @@
+//IT21304460 Vitharana I.P
+
+//UnregisteredUser.h
+
+class UnregisteredUser
+{
+protected:
+	int UserID;
+	char UserName[20];
+	int UserAge;
+	char UserEmail[20];
+	char UserAddress[30];
+public:
+	UnregisteredUser();
+	UnregisteredUser(int pUserID, const char pUserName[], int pUserAge, const char pUserEmail[], const char pUserAddress[]);
+	void registerUser();
+	virtual void displayDetails();
+	~UnregisteredUser();
+};
+
+
+//RegisteredUser.h
+
+#include"UnregisteredUser.h"
+#include"Game.h"
+#include"Profile.h"
+#include"Package.h"
+
+#define SIZE1
+#define SIZE12
+
+class RegisteredUser:public UnregisteredUser
+{
+protected:
+	char RegUsername[20];
+	char RegPassword[10];
+
+	Game* play[SIZE1];
+	Profile* profile[1];
+	Package* Sub[SIZE12];
+
+public:
+	RegisteredUser();
+	RegisteredUser(const char pRegUsername[],const char pRegPassword[], int pUserID, const char pUserName[], int pUserAge, const char pUserEmail[], const char pUserAddress[]);
+	void login();
+	char checklogindetails();
+	void displayDetails();
+	void logout();
+	~RegisteredUser();
+};
+
+
+
+//UnregisteredUser.cpp
+
+#include "UnregisteredUser.h"
+#include <cstring>
+#include<iostream>
+
+using namespace std;
+
+UnregisteredUser::UnregisteredUser()
+{
+	UserID = 0;
+	strcpy(UserName, " ");
+	UserAge = 0;
+	strcpy(UserEmail, " ");
+	strcpy(UserAddress, " ");
+}
+UnregisteredUser::UnregisteredUser(int pUserID, const char pUserName[], int pUserAge, const char pUserEmail[], const char pUserAddress[])
+{
+	UserID = pUserID;
+	strcpy(UserName, pUserName);
+	UserAge = pUserAge;
+	strcpy(UserEmail, pUserEmail);
+	strcpy(UserAddress, pUserAddress);
+}
+void UnregisteredUser::registerUser()
+{
+
+}
+void UnregisteredUser::displayDetails()
+{
+	cout << "User ID " << UserID << endl;
+	cout << "User Age" << UserAge << endl;
+	cout << "User Email" << UserEmail << endl;
+	cout << "User Address" << UserAddress << endl;
+}
+UnregisteredUser::~UnregisteredUser()
+{
+	//Destructor
+}
+
+
+
+
+//RegisteredUser.cpp
+
+#include "RegisteredUser.h"
+#include"UnregisteredUser.h"
+#include<cstring>
+#include<iostream>
+
+using namespace std;
+
+RegisteredUser::RegisteredUser()
+{
+	strcpy(RegUsername,"");
+	strcpy(RegPassword, "");
+}
+RegisteredUser::RegisteredUser(const char pRegUsername[], const char pRegPassword[], int pUserID, const char pUserName[], int pUserAge, const char pUserEmail[], const char pUserAddress[]):UnregisteredUser(pUserID, pUserName, pUserAge, pUserEmail, pUserAddress)
+{
+	strcpy(RegUsername, pRegUsername);
+	strcpy(RegPassword, pRegUsername);
+}
+void RegisteredUser::login()
+{
+
+}
+char RegisteredUser::checklogindetails()
+{
+	return 0;
+}
+void RegisteredUser::displayDetails()
+{
+	cout << "User Name" << RegUsername << endl;
+	cout << "User ID " << UserID << endl;
+	cout << "User Age" << UserAge << endl;
+	cout << "User Email" << UserEmail << endl;
+	cout << "User Address" << UserAddress << endl;
+}
+void RegisteredUser::logout()
+{
+
+}
+RegisteredUser::~RegisteredUser()
+{
+	//Destructor
+}
+
+
+
+//Main Program
+//Main.cpp
+
+#include"UnregisteredUser.h"
+#include"RegisteredUser.h"
+#include"Game.h"
+#include"Profile.h"
+#include"Package.h"
+#include"Developer.h"
+#include"Designer.h"
+#include"Administrator.h"
+#include"Payment.h"
+#include"Feedback.h"
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Objects Creating---------------------------------- 
+
+	UnregisteredUser* us = new UnregisteredUser();//object-Unregistered User
+	RegisteredUser* ru = new RegisteredUser();//object-Registered User
+	Profile* P1 = new Profile();//object-Profile
+	Package* Pack = new Package();//object-Package
+	Game* game = new Game();//object-Game
+	Developer* dev = new Developer();//object-Developer
+	Designer* des = new Designer();//object-Designer
+	Administrator* admin = new Administrator();//object-Administrator
+	Payment* pay = new Payment();//object-Payment
+	Feedback* feed = new Feedback();//object-Feedback
+
+	//Methods calling-----------------------------------
+
+	us->registerUser();//Unregistered User
+	us->displayDetails();
+
+	ru->login();//Registered User
+	ru->checklogindetails();
+	ru->displayDetails();
+	ru->logout();
+
+	P1->adddetails();//Profile
+	P1->displayDetails();
+	P1->generateGameplayReports();
+	P1->removedetails();
+
+	Pack->addPackage();//Package
+	Pack->displayPackages();
+	Pack->UpdatePackages();
+	Pack->removePackages();
+
+	game->addGames();//Game
+	game->DisplayGamedetails();
+	game->deleteGames();
+
+	dev->login();//Developer
+	dev->develop();
+	dev->update();
+	dev->logout();
+
+	des->login();//Designer
+	des->designing();
+	des->logout();
+	
+	admin->login();//Administrator
+	admin->manage();
+	admin->logout();
+
+	pay->checkPayment();//Payment
+	pay->confirmPayment();
+	pay->displayPaymentDetails();
+
+	feed->setfeedback();//Feedback
+	feed->displayfeedback();
+
+	//Delete dynamic objects--------------------------
+
+	delete us;
+	delete ru;
+	delete P1;
+	delete Pack;
+	delete game;
+	delete dev;
+	delete des;
+	delete admin;
+	delete pay;
+	delete feed;
+
+
+    return 0;
+}
